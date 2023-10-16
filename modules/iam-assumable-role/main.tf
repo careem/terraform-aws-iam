@@ -197,3 +197,10 @@ resource "aws_iam_instance_profile" "this" {
 
   tags = var.tags
 }
+
+resource "aws_iam_role_policy" "this" {
+  for_each = var.custom_role_inline_policies
+  name     = each.key
+  role     = aws_iam_role.this[0].name
+  policy   = each.value
+}
