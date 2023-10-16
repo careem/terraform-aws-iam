@@ -82,6 +82,12 @@ variable "custom_role_policy_arns" {
   default     = []
 }
 
+variable "custom_role_inline_policies" {
+  description = "List of custom inline policies"
+  type        = any
+  default     = {}
+}
+
 variable "custom_role_trust_policy" {
   description = "A custom role trust policy. (Only valid if create_custom_role_trust_policy = true)"
   type        = string
